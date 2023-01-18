@@ -20,11 +20,21 @@ const roomsRouter =require("./routes/rooms")
 
 app.use(express.json())
 
-app.use("/api/aute",authRouter)
+app.use("/api/auth",authRouter)
 app.use("/api/hotels",hotelsRouter)
 app.use("/api/rooms",roomsRouter)
 app.use("/api/users",usersRouter)
 
+app.use((err,req,res,next)=>{
+    const errorStatus = err.status||500;
+    const errorMessage = err.message||"Something went wrong";
+    res.status(errorStatus).json({
+        seccess: false,
+        status: errorStatus,
+        message: errorMessage,
+        stack: err.stack,
+    })
+})
 
 app.listen(8000, () => {
   console.log("http://localhost:8000");
