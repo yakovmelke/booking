@@ -6,16 +6,17 @@ const {
   updateHotel,
   deleteHotel,
 } = require("../controllers/hotels");
+const { verifyAdmin } = require("../utils/verifyToken");
 const router = express.Router();
 
 router.get("/", getAllHotels);
 
 router.get("/:id", getOneHotel);
 
-router.post("/", createHotel);
+router.post("/",verifyAdmin, createHotel);
 
-router.put("/:id", updateHotel);
+router.put("/:id",verifyAdmin, updateHotel);
 
-router.delete("/:id", deleteHotel);
+router.delete("/:id",verifyAdmin, deleteHotel);
 
 module.exports = router;

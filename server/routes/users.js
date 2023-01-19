@@ -1,10 +1,22 @@
-const express =require("express")
+const express = require("express");
+const {
+  getAllUsers,
+  getOneUser,
+  createUser,
+  updateUser,
+  deleteUser,
+} = require("../controllers/users");
+const { verifyToken, verifyUser, verifyAdmin } = require("../utils/verifyToken");
+const router = express.Router();
 
-const router =express.Router()
+router.get("/",verifyAdmin, getAllUsers);
 
-router.get("/",(req,res)=>{
-    res.send("hello, this is users endpoint")
-})
+router.get("/:id",verifyUser, getOneUser);
 
+router.post("/",verifyAdmin, createUser);
 
-module.exports = router
+router.put("/:id",verifyUser, updateUser);
+
+router.delete("/:id",verifyUser, deleteUser);
+
+module.exports = router;

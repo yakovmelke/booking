@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const app = express();
+const cookieParser = require("cookie-parser")
+
 
 const connect = () => {
   try {
@@ -18,6 +20,7 @@ const hotelsRouter =require("./routes/hotels")
 const usersRouter =require("./routes/users")
 const roomsRouter =require("./routes/rooms")
 
+app.use(cookieParser())
 app.use(express.json())
 
 app.use("/api/auth",authRouter)
