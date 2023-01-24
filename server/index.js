@@ -11,7 +11,7 @@ const connect = () => {
     mongoose.connect(process.env.MONGO);
     console.log("conected to mongodb");
   } catch (error) {
-    trhow(error);
+    throw(error);
   }
 };
 
