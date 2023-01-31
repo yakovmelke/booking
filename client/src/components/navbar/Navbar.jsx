@@ -5,7 +5,7 @@ const NavBar = () => {
   return (
     <Nav>
       <NavContainer>
-        <Logo>kddkdkdkd</Logo>
+        <Logo>yakov-booking</Logo>
         <NavItems>
           <NavButton>Register</NavButton>
           <NavButton>login</NavButton>
